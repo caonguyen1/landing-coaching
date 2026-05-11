@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Hero {
+  id        String   @id @default(cuid())
+
+  title     String
+
+  bullets   Json
+
+  content1  String
+
+  createdAt DateTime @default(now())
+}
+
+model Setting {
+  id        String   @id @default(cuid())
+  logo      String?
+  phone     String?
+  email     String?
+  website   String?
+  facebook  String?
+  youtube   String?
+  title     String?
+  meta      String?
+  content   String?
+  createdAt DateTime @default(now())
+}
+
+model Highlight {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ServiceSection {
+  id String @id @default(cuid())
+
+  mainTitle   String?
+  mainDesc1   String?
+  mainDesc2   String?
+  mainDesc3   String?
+
+  item1Title  String?
+  item1Desc   String?
+
+  item2Title  String?
+  item2Desc   String?
+
+  item3Title  String?
+  item3Desc   String?
+
+  createdAt DateTime @default(now())
+}
+
+model Video {
+  id          String   @id @default(cuid())
+  title       String
+  youtubeId   String
+
+  thumbnail   String   // 👈 ảnh custom (hoặc fallback youtube)
+  image       String?  // 👈 optional image riêng bạn upload
+
+  isActive    Boolean  @default(true)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  content   String
+  avatar    String?  // image url
+  position  String?  // chức danh (optional)
+
+  isActive  Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("testimonials")
+}
+
+model ExpertSection {
+  id          String   @id @default(cuid())
+  name        String
+  title       String
+  description String   @db.Text
+  quote       String   @db.Text
+  image       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+
+  name      String
+  age       String?
+  phone     String
+  message   String   @db.Text
+
+  isRead    Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+}
