@@ -57,107 +57,97 @@ export default function CTA() {
     }
   };
   return (
-    <section className="relative h-[80lvh] w-full overflow-hidden">
-      {/* Background Image */}
-      <img
-        src="/bg.jpg"
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+    <section className="relative min-h-[80vh] w-full overflow-hidden md:pt-10">
 
-      {/* Purple Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary-800/50  to-transparent" />
+  {/* Background */}
+  <img
+    src="/bg.jpg"
+    alt=""
+    className="absolute inset-0 h-full w-full object-cover"
+  />
 
-      {/* Content */}
-      <div className="relative z-10 mx-auto flex h-full max-w-6xl items-center justify-between px-2">
-        
-        {/* LEFT CONTENT */}
-        <div className="md:w-[60%] text-white">
-          <h1 className="text-[40px] font-bold leading-[1.05]">
-            Bạn đã chịu đựng đủ rồi.
-            Đừng để nỗi đau kéo dài
-            thêm nữa.
-          </h1>
+  {/* Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-r from-primary-800/60 md:from-primary-800/50 to-transparent" />
 
-          <div className="mt-10 flex items-center gap-4 text-[20px] font-medium">
-            <span className="text-yellow-400">👉</span>
-            <p>Tham gia tư vấn cùng chuyên gia</p>
-          </div>
-        </div>
+  {/* Content */}
+  <div className="relative z-10 mx-auto flex flex-col md:flex-row h-full max-w-6xl items-center justify-between gap-8 px-4 py-10 md:py-0">
 
-        {/* RIGHT FORM */}
-        <div className="w-full md:w-[40%] rounded-[15px] bg-white p-4 shadow-xl md:p-6">
-          <h2 className="mb-4 text-[20px] font-extrabold leading-tight text-black">
-            Đăng ký tham gia ngay hôm nay
-          </h2>
+    {/* LEFT */}
+    <div className="w-full md:w-[60%] text-white text-center md:text-left">
 
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-5"
-          >
-            <input
-              type="text"
-              placeholder="Họ tên"
-              value={form.name}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  name: e.target.value,
-                })
-              }
-              className="h-[50px] w-full rounded-2xl bg-primary-50 p-3 text-[16px] outline-none"
-            />
+      <h1 className="text-[28px] md:text-[35px] font-bold leading-[1.1] md:leading-[1.3]">
+        Bạn đã chịu đựng đủ rồi.
+        <br />
+        Đừng để nỗi đau kéo dài thêm nữa.
+      </h1>
 
-            <input
-              type="text"
-              placeholder="Tuổi"
-              value={form.age}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  age: e.target.value,
-                })
-              }
-              className="h-[50px] w-full rounded-2xl bg-primary-50 p-3 text-[16px] outline-none"
-            />
-
-            <input
-              type="text"
-              placeholder="Số điện thoại Zalo"
-              value={form.phone}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  phone: e.target.value,
-                })
-              }
-              className="h-[50px] w-full rounded-2xl bg-primary-50 p-3 text-[16px] outline-none"
-            />
-
-            <textarea
-              placeholder="Vấn đề cần hỗ trợ"
-              value={form.message}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  message: e.target.value,
-                })
-              }
-              className="min-h-[120px] w-full rounded-2xl bg-primary-50 p-3 text-[16px] outline-none"
-            />
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="h-[50px] w-full cursor-pointer rounded-full bg-gradient-to-r from-primary-600 to-primary-400 text-[16px] font-bold text-white transition hover:opacity-90 disabled:opacity-50"
-            >
-              {loading
-                ? 'Đang gửi...'
-                : 'Tham gia'}
-            </button>
-          </form>
-        </div>
+      <div className="mt-6 md:mt-10 flex items-center justify-center md:justify-start gap-3 md:gap-4 text-[16px] md:text-[20px] font-medium">
+        <span className="text-yellow-400">👉</span>
+        <p>Tham gia tư vấn cùng chuyên gia</p>
       </div>
-    </section>
+
+    </div>
+
+    {/* RIGHT FORM */}
+    <div className="w-full md:w-[40%] rounded-[15px] bg-white p-4 md:p-6 shadow-xl">
+
+      <h2 className="mb-4 text-[18px] md:text-[20px] font-extrabold leading-tight text-black text-center md:text-left">
+        Đăng ký tham gia ngay hôm nay
+      </h2>
+
+      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
+
+        <input
+          type="text"
+          placeholder="Họ tên"
+          value={form.name}
+          onChange={(e) =>
+            setForm({ ...form, name: e.target.value })
+          }
+          className="h-[48px] md:h-[50px] w-full rounded-2xl bg-primary-50 p-3 text-[15px] md:text-[16px] outline-none"
+        />
+
+        <input
+          type="text"
+          placeholder="Tuổi"
+          value={form.age}
+          onChange={(e) =>
+            setForm({ ...form, age: e.target.value })
+          }
+          className="h-[48px] md:h-[50px] w-full rounded-2xl bg-primary-50 p-3 text-[15px] md:text-[16px] outline-none"
+        />
+
+        <input
+          type="text"
+          placeholder="Số điện thoại Zalo"
+          value={form.phone}
+          onChange={(e) =>
+            setForm({ ...form, phone: e.target.value })
+          }
+          className="h-[48px] md:h-[50px] w-full rounded-2xl bg-primary-50 p-3 text-[15px] md:text-[16px] outline-none"
+        />
+
+        <textarea
+          placeholder="Vấn đề cần hỗ trợ"
+          value={form.message}
+          onChange={(e) =>
+            setForm({ ...form, message: e.target.value })
+          }
+          className="min-h-[110px] md:min-h-[120px] w-full rounded-2xl bg-primary-50 p-3 text-[15px] md:text-[16px] outline-none"
+        />
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="h-[48px] md:h-[50px] w-full cursor-pointer rounded-full bg-gradient-to-r from-primary-600 to-primary-400 text-[15px] md:text-[16px] font-bold text-white transition hover:opacity-90 disabled:opacity-50"
+        >
+          {loading ? 'Đang gửi...' : 'Tham gia'}
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+</section>
   );
 }

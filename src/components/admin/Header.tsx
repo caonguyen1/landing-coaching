@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { FiLogOut, FiMenu } from 'react-icons/fi';
 
 type Setting = {
   logo?: string;
   title?: string;
 };
 
-export default function Header() {
+export default function Header({ onToggleSidebar }) {
   const [setting, setSetting] = useState<Setting | null>(null);
 
   // 👉 load settings
@@ -35,9 +36,14 @@ export default function Header() {
 
   return (
     <div className="h-16 shadow flex items-center justify-between px-6 bg-gradient-to-b from-primary-700  to-primary-600">
-      
       {/* LEFT: LOGO + TITLE */}
       <div className="flex items-center gap-3">
+        <button
+          onClick={onToggleSidebar}
+          className="lg:hidden text-white"
+        >
+          <FiMenu size={28} />
+        </button>
         {setting?.logo && (
           <img
             src={setting.logo}
@@ -48,14 +54,15 @@ export default function Header() {
       </div>
 
       {/* RIGHT */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         <span className="text-sm text-white">Admin</span>
 
         <button
           onClick={handleLogout}
-          className="bg-primary-800 text-white px-3 py-1 rounded text-sm"
+          className="bg-primary-800 text-white px-3 py-2 md:py-1 rounded text-sm"
         >
-          Logout
+          <FiLogOut className='md:hidden'/>
+          <span className='max-md:hidden'>Logout</span>
         </button>
       </div>
     </div>

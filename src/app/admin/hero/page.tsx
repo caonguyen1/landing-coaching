@@ -256,7 +256,7 @@ export default function AdminHeroPage() {
                 font-medium
               "
             >
-              Bullet List
+              Các buổi học
             </label>
 
             <button
@@ -274,7 +274,7 @@ export default function AdminHeroPage() {
                 transition
               "
             >
-              + Add Bullet
+              + Tạo buổi
             </button>
           </div>
 
@@ -299,7 +299,7 @@ export default function AdminHeroPage() {
                         e.target.value
                       )
                     }
-                    placeholder={`Bullet ${
+                    placeholder={`Buổi ${
                       index + 1
                     }`}
                     className="
@@ -329,7 +329,7 @@ export default function AdminHeroPage() {
                       transition
                     "
                   >
-                    Delete
+                    Xóa
                   </button>
                 </div>
               )

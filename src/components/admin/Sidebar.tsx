@@ -26,11 +26,18 @@ const menus = [
   { name: 'Settings', path: '/admin/settings', icon: HiOutlineCog6Tooth },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({sidebarOpen }) {
   const pathname = usePathname();
 
   return (
-    <div className="w-64 bg-white shadow-lg">
+    <div className={`
+            fixed lg:static top-16 left-0 z-50 bg-white shadow-lg
+            h-[calc(100vh-64px)]
+            transition-transform duration-300
+            ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+            lg:translate-x-0
+          `}
+        >
 
 
       <nav className="p-4 space-y-2">
