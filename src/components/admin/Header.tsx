@@ -8,7 +8,12 @@ type Setting = {
   title?: string;
 };
 
-export default function Header({ onToggleSidebar }) {
+type HeaderProps = {
+  onToggleSidebar: () => void;
+};
+
+
+export default function Header({ onToggleSidebar }: HeaderProps) {
   const [setting, setSetting] = useState<Setting | null>(null);
 
   // 👉 load settings

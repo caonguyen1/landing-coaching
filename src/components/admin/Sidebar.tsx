@@ -15,6 +15,11 @@ import {
   HiOutlineCog6Tooth,
 } from 'react-icons/hi2';
 
+
+type SidebarProps = {
+  sidebarOpen: boolean;
+};
+
 const menus = [
   { name: 'Banner', path: '/admin/hero', icon: HiOutlineHome },
   { name: 'Điểm khác biệt', path: '/admin/highlight', icon: HiOutlineStar },
@@ -26,7 +31,7 @@ const menus = [
   { name: 'Settings', path: '/admin/settings', icon: HiOutlineCog6Tooth },
 ];
 
-export default function Sidebar({sidebarOpen }) {
+export default function Sidebar({ sidebarOpen }: SidebarProps) {
   const pathname = usePathname();
 
   return (
