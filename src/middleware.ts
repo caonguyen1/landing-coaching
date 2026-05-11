@@ -6,14 +6,14 @@ export function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
 
 
-  if (path === '/admin/login') {
+  if (path === '/login') {
     return NextResponse.next();
   }
 
   // 🔒 chặn admin
   if (path.startsWith('/admin')) {
     if (token !== process.env.ADMIN_SECRET) {
-      return NextResponse.redirect(new URL('/admin/login', req.url));
+      return NextResponse.redirect(new URL('/login', req.url));
     }
   }
 

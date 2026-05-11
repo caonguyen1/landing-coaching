@@ -30,7 +30,7 @@ export default function Header() {
       method: 'POST',
     });
 
-    window.location.href = '/admin/login';
+    window.location.href = '/login';
   };
 
   return (

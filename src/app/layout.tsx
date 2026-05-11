@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { prisma } from "@/lib/prisma";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -12,18 +14,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// 👉 DYNAMIC SEO
+// 👉 DYNAMIC SEO (Prisma trực tiếp)
 export async function generateMetadata(): Promise<Metadata> {
   try {
-    const data = await fetch("/api/admin/settings", {
-      cache: "no-store",
-    }).then((res) => res.json());
+   const settings = await prisma.setting.findFirst();
 
     return {
-      title: data?.title || "Default Title",
-      description: data?.meta || "Default description",
+      title: settings?.title || "Default Title",
+      description: settings?.meta || "Default description",
     };
-  } catch (e) {
+  } catch (error) {
+    console.error("generateMetadata error:", error);
+
     return {
       title: "Fallback Title",
       description: "Fallback description",
