@@ -222,18 +222,6 @@ export default function SettingsPage() {
               />
             </div>
 
-            {/* TITLE */}
-            <div className="col-span-2 mb-2">
-              <label className="block text-sm font-medium mb-1">
-                Title (SEO)
-              </label>
-              <input
-                name="title"
-                value={form.title}
-                onChange={handleChange}
-                className="w-full border border-gray-300 p-2 rounded"
-              />
-            </div>
 
             <div className="col-span-2 mb-2">
               <label className="block text-sm font-medium mb-1">
@@ -250,6 +238,20 @@ export default function SettingsPage() {
                 />
             </div>
 
+            
+            {/* TITLE */}
+            <div className="col-span-2 mb-2">
+              <label className="block text-sm font-medium mb-1">
+                Title (SEO)
+              </label>
+              <input
+                name="title"
+                value={form.title}
+                onChange={handleChange}
+                className="w-full border border-gray-300 p-2 rounded"
+              />
+            </div>
+
             {/* META */}
             <div className="col-span-2 mb-2">
               <label className="block text-sm font-medium mb-1">
@@ -260,9 +262,11 @@ export default function SettingsPage() {
                 value={form.meta}
                 onChange={handleChange}
                 className="w-full border border-gray-300 p-2 rounded"
-                rows={3}
+                rows={4}
               />
+              <span className='text-sm opacity-60'>Mô tả ngắn hiển thị trên Google và mạng xã hội để giúp tăng SEO và thu hút người dùng nhấp vào website.</span>
             </div>
+            
 
           </div>
       </div>

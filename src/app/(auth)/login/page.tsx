@@ -32,8 +32,8 @@ export default function LoginPage() {
     
     {/* Header */}
     <div className="text-center space-y-1">
-      <h1 className="text-2xl font-bold text-gray-800">Admin Login</h1>
-      <p className="text-sm text-gray-500">Welcome back 👋</p>
+      <h1 className="text-2xl font-bold text-gray-800">Đăng nhập quản trị viên</h1>
+      <p className="text-sm text-gray-500">Chào mừng quay trở lại 👋</p>
     </div>
 
     {/* Username */}
@@ -64,14 +64,14 @@ export default function LoginPage() {
     {/* Button */}
     <button
       onClick={handleLogin}
-      className="w-full bg-purple-600 hover:bg-purple-700 active:scale-[0.98] transition text-white py-3 rounded-lg font-medium shadow-md"
+      className="cursor-pointer w-full bg-purple-600 hover:bg-purple-700 active:scale-[0.98] transition text-white py-3 rounded-lg font-medium shadow-md"
     >
-      Login
+      Đăng nhập
     </button>
 
     {/* Footer */}
     <p className="text-xs text-center text-gray-400">
-      Secure admin access only
+      Chỉ dành cho quản trị viên truy cập an toàn
     </p>
   </div>
 </div>

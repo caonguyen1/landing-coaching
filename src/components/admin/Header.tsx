@@ -64,10 +64,10 @@ export default function Header({ onToggleSidebar }: HeaderProps) {
 
         <button
           onClick={handleLogout}
-          className="bg-primary-800 text-white px-3 py-2 md:py-1 rounded text-sm"
+          className="bg-primary-800 text-white px-3 py-2 md:py-1 rounded text-sm cursor-pointer"
         >
           <FiLogOut className='md:hidden'/>
-          <span className='max-md:hidden'>Logout</span>
+          <span className='max-md:hidden'>Đăng xuất</span>
         </button>
       </div>
     </div>
