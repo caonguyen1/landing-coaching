@@ -1,45 +1,41 @@
-'use client';
+import { prisma } from '@/lib/prisma';
 
-import { useEffect, useState } from "react";
+export const revalidate = 300;
 
-export default function Highlight() {
-   const [content, setContent] = useState('');
+async function getHighlight() {
+  return prisma.highlight.findFirst();
+}
 
-  useEffect(() => {
-    const load = async () => {
-      const res = await fetch('/api/admin/highlight');
-      const data = await res.json();
+export default async function Highlight() {
+  const data = await getHighlight();
 
-      if (data?.content) {
-        setContent(data.content);
-      }
-    };
+  if (!data?.content) return null;
 
-    load();
-  }, []);
   return (
-    <section className="bg-gradient-to-b from-primary-100 to-white py-10 md:py-14 px-4 md:px-2">
-  <div className="max-w-6xl mx-auto overflow-hidden bg-gradient-to-r from-primary-700 to-primary-400 text-white p-5 md:p-8 rounded-2xl relative">
+    <section className="bg-gradient-to-b from-primary-100 to-white px-4 py-10 md:px-2 md:py-14">
+      <div className="relative mx-auto max-w-6xl overflow-hidden rounded-2xl bg-gradient-to-r from-primary-700 to-primary-400 p-5 text-white md:p-8">
+        {/* TITLE */}
+        <h2 className="mb-4 text-center text-xl font-bold sm:text-2xl lg:text-[35px]">
+          Điểm khác biệt
+        </h2>
 
-    <h2 className="text-xl sm:text-2xl lg:text-[35px] font-bold mb-4 text-center">
-      Điểm khác biệt
-    </h2>
+        {/* CONTENT */}
+        <div
+          className="prose prose-invert relative z-10 max-w-none text-base md:text-lg"
+          dangerouslySetInnerHTML={{
+            __html: data.content,
+          }}
+        />
 
-    <div
-      className="prose prose-invert max-w-none text-base md:text-lg"
-      dangerouslySetInnerHTML={{ __html: content }}
-    />
-
-    {/* decorative image */}
-    <div className="absolute -bottom-10 -right-10 md:-bottom-14 md:-right-14 opacity-70 md:opacity-100">
-      <img
-        src="/flower.png"
-        alt="Điểm khác biệt"
-        className="w-[180px] md:w-[300px]"
-      />
-    </div>
-
-  </div>
-</section>
+        {/* DECORATION */}
+        <div className="absolute -right-10 -bottom-10 opacity-70 md:-right-14 md:-bottom-14 md:opacity-100">
+          <img
+            src="/flower.png"
+            alt="Điểm khác biệt"
+            className="w-[180px] md:w-[300px]"
+          />
+        </div>
+      </div>
+    </section>
   );
 }

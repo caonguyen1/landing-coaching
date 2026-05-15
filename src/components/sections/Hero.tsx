@@ -1,56 +1,35 @@
-'use client';
-
-import { useEffect, useState } from 'react';
+import { prisma } from '@/lib/prisma';
 import { BiCheckCircle } from 'react-icons/bi';
 import { FaFacebookF, FaPhoneAlt } from 'react-icons/fa';
 import { TbWorldWww } from 'react-icons/tb';
 import QRCode from 'react-qr-code';
 
-export default function Hero() {
-  const [data, setData] = useState<any>(null);
-  const [dataSetting, setDataSetting] = useState<any>(null);
+export const revalidate = 300;
 
-  useEffect(() => {
-    fetch('/api/hero')
-      .then((res) => res.json())
-      .then((res) => setData(res));
-  }, []);
+async function getData() {
+  const [hero, settings] = await Promise.all([
+    prisma.hero.findFirst(),
+    prisma.setting.findFirst(),
+  ]);
 
-  
+  return {
+    hero,
+    settings,
+  };
+}
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const res = await fetch(
-          '/api/admin/settings'
-        );
+export default async function Hero() {
+  const { hero: data, settings: dataSetting } =
+    await getData();
 
-        const json = await res.json();
-
-        setDataSetting(json);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    load();
-  }, []);
-
-
-  if (!data) {
-    return (
-      <div className="p-10 text-center text-white">
-        Loading...
-      </div>
-    );
-  }
-
+  if (!data) return null;
   return (
     <>
       <section
-      className="text-white bg-cover bg-no-repeat bg-bottom relative overflow-hidden"
-      style={{ backgroundImage: 'url(/bg-banner.jpg)' }}
+      className="text-white bg-cover bg-no-repeat bg-bottom relative overflow-hidden bg-primary-800"
     >
+      <div className='absolute top-0 left-0 w-full h-full bg-no-repeat bg-cover opacity-25' 
+      style={{ backgroundImage: 'url(/bg-banner.png)' }}></div>
       <img
         src="/flower.png"
         alt={data.title}
@@ -147,17 +126,23 @@ export default function Hero() {
               {dataSetting?.website && (
                 <a
                   href={
-                    data.website?.startsWith('http')
-                      ? data.website
+                    dataSetting.website.startsWith(
+                      'http'
+                    )
+                      ? dataSetting.website
                       : `https://${dataSetting.website}`
                   }
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-1.5"
                 >
                   <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-white/10 text-[22px]">
                     <TbWorldWww />
                   </div>
-                  <span className="font-bold">{dataSetting.website}</span>
+
+                  <span className="font-bold">
+                    {dataSetting.website}
+                  </span>
                 </a>
               )}
 
