@@ -79,12 +79,16 @@ export default async function Hero() {
           <div className="flex flex-col items-center md:items-center">
 
             <ul className="mt-6 space-y-3 text-[14px] md:text-[18px]">
-              {data?.bullets?.map((item: string, index: number) => (
-                <li key={index} className="flex gap-2 items-start md:items-center">
-                  <BiCheckCircle className="text-green-400 text-2xl md:text-3xl shrink-0 mt-[2px] md:mt-0" />
-                  <span>{item}</span>
-                </li>
-              ))}
+              {Array.isArray(data?.bullets) &&
+                data.bullets.map((item, index) => (
+                  <li
+                    key={index}
+                    className="flex gap-2 items-start md:items-center"
+                  >
+                    <BiCheckCircle className="text-green-400 text-2xl md:text-3xl shrink-0 mt-0.5 md:mt-0" />
+                    <span>{String(item)}</span>
+                  </li>
+                ))}
             </ul>
 
             {/* CONTENT */}
