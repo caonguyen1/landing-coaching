@@ -16,9 +16,17 @@ async function getVideos() {
     },
   });
 }
+async function getTestimonials() {
+  return prisma.testimonial.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+}
 
 export default async function Homepage() {
   const videos = await getVideos();
+  const testimonials = await getTestimonials();
 
   return (
     <main className="flex flex-col">
@@ -32,7 +40,7 @@ export default async function Homepage() {
 
       <Videos videos={videos} />
 
-      <Testimonials />
+      <Testimonials data={testimonials}/>
 
       <CTA />
 

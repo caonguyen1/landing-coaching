@@ -1,7 +1,8 @@
-'use client';
 
+'use client';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import MotionItem from '../motion/MotionItem';
 
 export default function CTA() {
   const [loading, setLoading] =
@@ -57,7 +58,8 @@ export default function CTA() {
     }
   };
   return (
-    <section className="relative min-h-[80vh] w-full overflow-hidden md:pt-10">
+
+<section className="relative min-h-[80vh] w-full overflow-hidden md:pt-10">
 
   {/* Background */}
   <img
@@ -67,85 +69,168 @@ export default function CTA() {
   />
 
   {/* Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-r from-primary-800/60 md:from-primary-800/50 to-transparent" />
+  <div className="absolute inset-0 bg-gradient-to-r from-primary-800/60 to-transparent md:from-primary-800/50" />
 
   {/* Content */}
-  <div className="relative z-10 mx-auto flex flex-col md:flex-row h-full max-w-6xl items-center justify-between gap-8 px-4 py-10 md:py-0">
+  <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-center justify-between gap-8 px-4 py-10 md:flex-row md:py-0">
 
     {/* LEFT */}
-    <div className="w-full md:w-[60%] text-white text-center md:text-left">
+    <MotionItem
+      variant="left"
+      className="w-full text-center text-white md:w-[60%] md:text-left"
+    >
 
-      <h1 className="text-[28px] md:text-[35px] font-bold leading-[1.1] md:leading-[1.3]">
-        Bạn đã chịu đựng đủ rồi.
-        <br />
-        Đừng để nỗi đau kéo dài thêm nữa.
-      </h1>
+      {/* TITLE */}
+      <MotionItem
+        variant="fade"
+        delay={0.15}
+      >
+        <h1 className="text-[28px] font-bold leading-[1.1] md:text-[35px] md:leading-[1.3]">
+          Bạn đã chịu đựng đủ rồi.
+          <br />
+          Đừng để nỗi đau kéo dài thêm nữa.
+        </h1>
+      </MotionItem>
 
-      <div className="mt-6 md:mt-10 flex items-center justify-center md:justify-start gap-3 md:gap-4 text-[16px] md:text-[20px] font-medium">
-        <span className="text-yellow-400">👉</span>
-        <p>Tham gia tư vấn cùng chuyên gia</p>
-      </div>
+      {/* SUB */}
+      <MotionItem
+        variant="fade"
+        delay={0.35}
+      >
+        <div className="mt-6 flex items-center justify-center gap-3 text-[16px] font-medium md:mt-10 md:justify-start md:gap-4 md:text-[20px]">
 
-    </div>
+          <span className="animate-pulse text-yellow-400">
+            👉
+          </span>
 
-    {/* RIGHT FORM */}
-    <div className="w-full md:w-[40%] rounded-[15px] bg-white p-4 md:p-6 shadow-xl">
+          <p>
+            Tham gia tư vấn cùng chuyên gia
+          </p>
 
-      <h2 className="mb-4 text-[18px] md:text-[20px] font-extrabold leading-tight text-black text-center md:text-left">
-        Đăng ký tham gia ngay hôm nay
-      </h2>
+        </div>
+      </MotionItem>
 
-      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
+    </MotionItem>
 
-        <input
-          type="text"
-          placeholder="Họ tên"
-          value={form.name}
-          onChange={(e) =>
-            setForm({ ...form, name: e.target.value })
-          }
-          className="h-[48px] md:h-[50px] w-full rounded-2xl bg-primary-50 p-3 text-[15px] md:text-[16px] outline-none"
-        />
+    {/* FORM */}
+    <MotionItem
+      variant="right"
+      delay={0.2}
+      className="w-full md:w-[40%]"
+    >
 
-        <input
-          type="text"
-          placeholder="Tuổi"
-          value={form.age}
-          onChange={(e) =>
-            setForm({ ...form, age: e.target.value })
-          }
-          className="h-[48px] md:h-[50px] w-full rounded-2xl bg-primary-50 p-3 text-[15px] md:text-[16px] outline-none"
-        />
+      <div className="rounded-[20px] bg-white p-4 shadow-2xl md:p-6">
 
-        <input
-          type="text"
-          placeholder="Số điện thoại Zalo"
-          value={form.phone}
-          onChange={(e) =>
-            setForm({ ...form, phone: e.target.value })
-          }
-          className="h-[48px] md:h-[50px] w-full rounded-2xl bg-primary-50 p-3 text-[15px] md:text-[16px] outline-none"
-        />
-
-        <textarea
-          placeholder="Vấn đề cần hỗ trợ"
-          value={form.message}
-          onChange={(e) =>
-            setForm({ ...form, message: e.target.value })
-          }
-          className="min-h-[110px] md:min-h-[120px] w-full rounded-2xl bg-primary-50 p-3 text-[15px] md:text-[16px] outline-none"
-        />
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="h-[48px] md:h-[50px] w-full cursor-pointer rounded-full bg-gradient-to-r from-primary-600 to-primary-400 text-[15px] md:text-[16px] font-bold text-white transition hover:opacity-90 disabled:opacity-50"
+        {/* TITLE */}
+        <MotionItem
+          variant="fade"
+          delay={0.3}
         >
-          {loading ? 'Đang gửi...' : 'Tham gia'}
-        </button>
+          <h2 className="mb-4 text-center text-[18px] font-extrabold leading-tight text-black md:text-left md:text-[20px]">
+            Đăng ký tham gia ngay hôm nay
+          </h2>
+        </MotionItem>
 
-      </form>
-    </div>
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4 md:space-y-5"
+        >
+
+          {/* NAME */}
+          <MotionItem
+            variant="fade"
+            delay={0.4}
+          >
+            <input
+              type="text"
+              placeholder="Họ tên"
+              value={form.name}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  name: e.target.value,
+                })
+              }
+              className="h-[48px] w-full rounded-2xl bg-primary-50 p-3 text-[15px] outline-none transition duration-300 focus:ring-2 focus:ring-primary-300 md:h-[50px] md:text-[16px]"
+            />
+          </MotionItem>
+
+          {/* AGE */}
+          <MotionItem
+            variant="fade"
+            delay={0.5}
+          >
+            <input
+              type="text"
+              placeholder="Tuổi"
+              value={form.age}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  age: e.target.value,
+                })
+              }
+              className="h-[48px] w-full rounded-2xl bg-primary-50 p-3 text-[15px] outline-none transition duration-300 focus:ring-2 focus:ring-primary-300 md:h-[50px] md:text-[16px]"
+            />
+          </MotionItem>
+
+          {/* PHONE */}
+          <MotionItem
+            variant="fade"
+            delay={0.6}
+          >
+            <input
+              type="text"
+              placeholder="Số điện thoại Zalo"
+              value={form.phone}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  phone: e.target.value,
+                })
+              }
+              className="h-[48px] w-full rounded-2xl bg-primary-50 p-3 text-[15px] outline-none transition duration-300 focus:ring-2 focus:ring-primary-300 md:h-[50px] md:text-[16px]"
+            />
+          </MotionItem>
+
+          {/* MESSAGE */}
+          <MotionItem
+            variant="fade"
+            delay={0.7}
+          >
+            <textarea
+              placeholder="Vấn đề cần hỗ trợ"
+              value={form.message}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  message: e.target.value,
+                })
+              }
+              className="min-h-[110px] w-full rounded-2xl bg-primary-50 p-3 text-[15px] outline-none transition duration-300 focus:ring-2 focus:ring-primary-300 md:min-h-[120px] md:text-[16px]"
+            />
+          </MotionItem>
+
+          {/* BUTTON */}
+          <MotionItem
+            variant="scale"
+            delay={0.8}
+          >
+            <button
+              type="submit"
+              disabled={loading}
+              className="h-[48px] w-full cursor-pointer rounded-full bg-gradient-to-r from-primary-600 to-primary-400 text-[15px] font-bold text-white transition duration-300 hover:scale-[1.02] hover:opacity-90 active:scale-[0.98] disabled:opacity-50 md:h-[50px] md:text-[16px]"
+            >
+              {loading
+                ? 'Đang gửi...'
+                : 'Tham gia'}
+            </button>
+          </MotionItem>
+
+        </form>
+
+      </div>
+    </MotionItem>
 
   </div>
 </section>
