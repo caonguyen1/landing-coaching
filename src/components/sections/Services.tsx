@@ -48,9 +48,8 @@ export default async function Services() {
               key={i}
               variant={variants[i]}
               delay={i * 0.15}
+              className='overflow-hidden rounded-xl bg-white shadow-md transition duration-300 hover:-translate-y-2 hover:shadow-xl'
             >
-              <div className="overflow-hidden rounded-xl bg-white shadow-md transition duration-300 hover:-translate-y-2 hover:shadow-xl">
-
                 {/* CARD TITLE */}
                 <h3 className="bg-gradient-to-r from-primary-700 to-primary-400 p-3 text-center text-sm font-bold text-white md:p-4 md:text-md">
                   {item.title}
@@ -65,8 +64,6 @@ export default async function Services() {
                     }}
                   />
                 </div>
-
-              </div>
             </MotionItem>
           );
         })}
