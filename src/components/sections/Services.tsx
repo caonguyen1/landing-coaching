@@ -7,8 +7,13 @@ async function getServices() {
   return prisma.serviceSection.findFirst();
 }
 
+async function getSettings() {
+  return prisma.setting.findFirst();
+}
+
 export default async function Services() {
   const data = await getServices();
+  const dataSetting = await getSettings();
 
   if (!data) return null;
 
@@ -112,9 +117,14 @@ export default async function Services() {
           {/* BUTTON */}
           <MotionItem variant="fade" delay={0.3}>
             <div className="p-4">
-              <button className="mx-auto block w-full rounded-full bg-gradient-to-r from-primary-700 to-primary-400 p-3 font-medium text-white transition duration-300 hover:scale-[1.02] hover:opacity-90 active:scale-[0.98]">
+              <a
+                href={`https://zalo.me/${dataSetting?.phone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-center mx-auto block w-full rounded-full bg-gradient-to-r from-primary-700 to-primary-400 p-3 font-medium text-white transition duration-300 hover:scale-[1.02] hover:opacity-90 active:scale-[0.98] cursor-pointer"
+              >
                 TƯ VẤN CHƯƠNG TRÌNH
-              </button>
+              </a>
             </div>
           </MotionItem>
 
